@@ -7,6 +7,8 @@ import sys
 import threading
 import glob
 
+import esptool
+
 import serial
 
 from serial.tools.list_ports import comports
@@ -14,8 +16,8 @@ from serial.tools import hexlify_codec
 
 
 from pprint import pprint
-from PyInquirer import style_from_dict, Token, prompt, Separator
-from examples import custom_style_2
+import urllib.request
+
 
 def serial_ports():
     """ Lists serial port names
@@ -45,27 +47,87 @@ def serial_ports():
             pass
     return result
 
+
+
 def flashFirmware(answers):
     print("Port: "+answers['port'])
     print("Firmware: "+answers['firmware'])
-    #this is the command that would run
-    #esptool.py --chip esp32 --port "/dev/cu.SLAB_USBtoUART" --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_size detect 2691072 spiffs.bin 0x10000 firmware.bin
 
 
-questions = [
-    {
-        'type': 'list',
-        'name': 'port',
-        'message': 'Select Serial Port for Device',
-        'choices': serial_ports()
+port_array = {}
+# port_array.append('Cancel')
+print('Scanning for Serial Ports')
+print('Please wait for the scan to complete')
+print('Serial Port Options:')
+for serial_port in serial_ports():
+    sp_key = len(port_array)+1
+    port_array.update({str(sp_key): serial_port})
+
+for serial_port in port_array:
+    print('[' + serial_port + ']: ' + port_array.get(serial_port))
+print('')
+target_port_key = input('Please enter the number of the desired Serial Port above: ')
+
+firmware_choices = {
+    '1': {
+        'name': 'WiFi AWS Gateway',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/spiffs.bin'
     },
-    {
-        'type': 'list',
-        'name': 'firmware',
-        'message': 'Select Firmware to flash',
-        'choices': ['WiFi_AWS', 'WiFi_Azure', 'WiFi_MQTT', 'WiFi_Losant', 'WiFi_GoogleIoT', 'Mega_Modem', 'Cellular_MQTT'],
+    '2': {
+        'name': 'WiFi Azure Gateway',
+        'firmware': '',
+        'spiffs': ''
+    },
+    '3': {
+        'name': 'WiFi MQTT Gateway',
+        'firmware': '',
+        'spiffs': ''
+    },
+    '4': {
+        'name': 'WiFi Losant Gateway',
+        'firmware': '',
+        'spiffs': ''
+    },
+    '5': {
+        'name': 'WiFi Google IoT Gateway',
+        'firmware': '',
+        'spiffs': ''
+    },
+    '6': {
+        'name': 'Mega Modem',
+        'firmware': '',
+        'spiffs': ''
+    },
+    '7': {
+        'name': 'Cellular MQTT Gateway',
+        'firmware': '',
+        'spiffs': ''
     }
-]
+}
 
-answers = prompt(questions, style=custom_style_2)
-flashFirmware(answers)
+print('Firmware Choices:')
+for firmware in firmware_choices:
+    print('['+firmware+']: ' + firmware_choices.get(firmware).get('name'))
+print('')
+firmware = input('Please enter the number of the desired firmware: ')
+
+firmware = firmware_choices.get(firmware)
+print(firmware.get('firmware'))
+firmware_file = urllib.request.urlretrieve(str(firmware.get('firmware')), './firmware.bin')
+print(firmware_file)
+
+print(firmware.get('spiffs'))
+spiffs_file = urllib.request.urlretrieve(str(firmware.get('spiffs')), './spiffs.bin')
+print(spiffs_file)
+
+print(port_array.get(target_port_key))
+
+print('')
+print('fingers crossed:')
+
+try:
+    espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_size', 'detect', '2691072', 'spiffs.bin', '0x10000', 'firmware.bin'])
+    # espmodule = esptool.main(['--chip', 'esp32', '--port', '/dev/cu.SLAB_USBtoUART', '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_size', 'detect', '2691072', 'spiffs.bin', '0x10000', 'firmware.bin'])
+except:
+    print('fail cu')
