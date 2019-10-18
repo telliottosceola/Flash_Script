@@ -76,33 +76,28 @@ firmware_choices = {
     },
     '2': {
         'name': 'WiFi Azure Gateway',
-        'firmware': '',
-        'spiffs': ''
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/spiffs.bin'
     },
     '3': {
         'name': 'WiFi MQTT Gateway',
-        'firmware': '',
-        'spiffs': ''
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/spiffs.bin'
     },
     '4': {
-        'name': 'WiFi Losant Gateway',
-        'firmware': '',
-        'spiffs': ''
+        'name': 'WiFi Google IoT Gateway',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/spiffs.bin'
     },
     '5': {
-        'name': 'WiFi Google IoT Gateway',
-        'firmware': '',
-        'spiffs': ''
+        'name': 'Mega Modem',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/spiffs.bin'
     },
     '6': {
-        'name': 'Mega Modem',
-        'firmware': '',
-        'spiffs': ''
-    },
-    '7': {
         'name': 'Cellular MQTT Gateway',
-        'firmware': '',
-        'spiffs': ''
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/spiffs.bin'
     }
 }
 
