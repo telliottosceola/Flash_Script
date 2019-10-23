@@ -72,32 +72,44 @@ firmware_choices = {
     '1': {
         'name': 'WiFi AWS Gateway',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/firmware.bin',
-        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/spiffs.bin'
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/partitions.bin'
     },
     '2': {
         'name': 'WiFi Azure Gateway',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/firmware.bin',
-        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/spiffs.bin'
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/partitions.bin'
     },
     '3': {
         'name': 'WiFi MQTT Gateway',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/firmware.bin',
-        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/spiffs.bin'
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/partitions.bin'
     },
     '4': {
         'name': 'WiFi Google IoT Gateway',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/firmware.bin',
-        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/spiffs.bin'
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/partitions.bin'
     },
     '5': {
         'name': 'Mega Modem',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/firmware.bin',
-        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/spiffs.bin'
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/partitions.bin'
     },
     '6': {
         'name': 'Cellular MQTT Gateway',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/firmware.bin',
-        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/spiffs.bin'
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/partitions.bin'
     }
 }
 
