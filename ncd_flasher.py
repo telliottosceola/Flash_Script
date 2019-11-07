@@ -18,6 +18,8 @@ from serial.tools import hexlify_codec
 from pprint import pprint
 import urllib.request
 
+dev = false
+
 
 def serial_ports():
     """ Lists serial port names
@@ -56,6 +58,10 @@ def flashFirmware(answers):
 
 port_array = {}
 # port_array.append('Cancel')
+if(len(sys.argv)>1):
+    if(sys.argv[1] == "dev"):
+        dev = true
+
 print('Scanning for Serial Ports')
 print('Please wait for the scan to complete')
 print('Serial Port Options:')
@@ -113,13 +119,62 @@ firmware_choices = {
     }
 }
 
+firmware_choices_dev = {
+    '1': {
+        'name': 'WiFi AWS Gateway',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/firmware-dev.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/spiffs-dev.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/bootloader-dev.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_AWS/partitions-dev.bin'
+    },
+    '2': {
+        'name': 'WiFi Azure Gateway',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/firmware-dev.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/spiffs-dev.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/bootloader-dev.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure/partitions-dev.bin'
+    },
+    '3': {
+        'name': 'WiFi MQTT Gateway',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/firmware-dev.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/spiffs-dev.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/bootloader-dev.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_MQTT/partitions-dev.bin'
+    },
+    '4': {
+        'name': 'WiFi Google IoT Gateway',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/firmware-dev.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/spiffs-dev.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/bootloader-dev.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Google/partitions-dev.bin'
+    },
+    '5': {
+        'name': 'Mega Modem',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/firmware-dev.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/spiffs-dev.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/bootloader-dev.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Mega_Modem/partitions-dev.bin'
+    },
+    '6': {
+        'name': 'Cellular MQTT Gateway',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/firmware-dev.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/spiffs-dev.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/bootloader-dev.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/partitions-dev.bin'
+    }
+}
+
 print('Firmware Choices:')
 for firmware in firmware_choices:
     print('['+firmware+']: ' + firmware_choices.get(firmware).get('name'))
 print('')
-firmware = input('Please enter the number of the desired firmware: ')
+firmware_choice = input('Please enter the number of the desired firmware: ')
 
-firmware = firmware_choices.get(firmware)
+if(dev):
+    firmware = firmware_choices_dev.get(firmware_choice)
+else:
+    firmware = firmware_choices.get(firmware_choice)
+
 print(firmware.get('firmware'))
 firmware_file = urllib.request.urlretrieve(str(firmware.get('firmware')), './firmware.bin')
 print(firmware_file)
