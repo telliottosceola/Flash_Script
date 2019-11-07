@@ -18,7 +18,7 @@ from serial.tools import hexlify_codec
 from pprint import pprint
 import urllib.request
 
-dev = false
+dev = False
 
 
 def serial_ports():
