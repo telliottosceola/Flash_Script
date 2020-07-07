@@ -19,11 +19,11 @@ from pprint import pprint
 import urllib.request
 
 dev = False
+spiffs = True
 
 
 def serial_ports():
     """ Lists serial port names
-
         :raises EnvironmentError:
             On unsupported or unknown platforms
         :returns:
@@ -60,7 +60,13 @@ port_array = {}
 # port_array.append('Cancel')
 if(len(sys.argv)>1):
     if(sys.argv[1] == "dev"):
-        dev = true
+        print('running dev')
+        dev = True
+
+if(len(sys.argv)>1):
+    if(sys.argv[1] == "ns"):
+        print('not flashing spiffs')
+        spiffs = False
 
 print('Scanning for Serial Ports')
 print('Please wait for the scan to complete')
@@ -116,6 +122,20 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/partitions.bin'
+    },
+    '7': {
+        'name': 'Losant Gateway',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Losant/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Losant/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Losant/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Losant/partitions.bin'
+    }
+    '8': {
+        'name': '4 Relay MirPro',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/4_Relay_MirPro/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/4_Relay_MirPro/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/4_Relay_MirPro/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/4_Relay_MirPro/partitions.bin'
     }
 }
 
@@ -197,7 +217,10 @@ print('')
 print('fingers crossed:')
 
 # try:
-espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00290000', 'spiffs.bin', '0x10000', 'firmware.bin'])
+if spiffs:
+    espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00290000', 'spiffs.bin', '0x10000', 'firmware.bin'])
+else:
+    espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x10000', 'firmware.bin'])
     # espmodule = esptool.main(['--chip', 'esp32', '--port', '/dev/cu.SLAB_USBtoUART', '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_size', 'detect', '2691072', 'spiffs.bin', '0x10000', 'firmware.bin'])
 # except:
     # print('fail cu')
