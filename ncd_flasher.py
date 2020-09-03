@@ -20,6 +20,7 @@ import urllib.request
 
 dev = False
 spiffs = True
+sota = False
 
 
 def serial_ports():
@@ -59,14 +60,17 @@ def flashFirmware(answers):
 port_array = {}
 # port_array.append('Cancel')
 if(len(sys.argv)>1):
-    if(sys.argv[1] == "dev"):
+    print('sys args present')
+    print(sys.argv[1])
+    if(sys.argv[1] == "dev" or sys.argv[1] == "-dev"):
         print('running dev')
         dev = True
-
-if(len(sys.argv)>1):
-    if(sys.argv[1] == "ns"):
+    if(sys.argv[1] == "ns" or sys.argv[1] == "-ns"):
         print('not flashing spiffs')
         spiffs = False
+    if(sys.argv[1] == "-sota" or sys.argv[1] == "sota"):
+        print('Sota Firmware');
+        sota = True
 
 print('Scanning for Serial Ports')
 print('Please wait for the scan to complete')
@@ -183,6 +187,11 @@ firmware_choices_dev = {
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/Cellular_MQTT/partitions-dev.bin'
     }
 }
+
+if sota:
+    firmware_file = urllib.request.urlretrieve('https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/firmware.bin', './firmware.bin')
+    espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x10000', 'firmware.bin'])
+    sys.exit()
 
 print('Firmware Choices:')
 for firmware in firmware_choices:
