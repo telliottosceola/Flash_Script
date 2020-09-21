@@ -140,6 +140,13 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/4_Relay_MirPro/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/4_Relay_MirPro/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/4_Relay_MirPro/partitions.bin'
+    },
+    '9': {
+        'name': 'AWS WiFi Sensor',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/AWS_Sensor/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/AWS_Sensor/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/AWS_Sensor/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/AWS_Sensor/partitions.bin'
     }
 }
 
