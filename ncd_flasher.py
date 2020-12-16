@@ -175,6 +175,13 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator/partitions.bin'
+    },
+    '14': {
+        'name': 'ESP XBee',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/ESP_XBee/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/ESP_XBee/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/ESP_XBee/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP_XBee/partitions.bin'
     }
 }
 
@@ -264,7 +271,7 @@ print('fingers crossed:')
 
 # try:
 if spiffs:
-    if firmware_choice == '5':
+    if firmware_choice == '5' or firmware_choice == '14':
         espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00383000', 'spiffs.bin', '0x10000', 'firmware.bin'])
     else:
         espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00290000', 'spiffs.bin', '0x10000', 'firmware.bin'])
