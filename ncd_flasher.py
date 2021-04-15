@@ -182,6 +182,12 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/ESP_XBee/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/ESP_XBee/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP_XBee/partitions.bin'
+    },
+    '15':{
+        'name': 'WiFi Azure Gateway Custom',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure_Custom/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure_Custom/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure_Custom/bootloader.bin'
     }
 }
 
@@ -274,7 +280,10 @@ if spiffs:
     if firmware_choice == '5' or firmware_choice == '14':
         espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00383000', 'spiffs.bin', '0x10000', 'firmware.bin'])
     else:
-        espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00290000', 'spiffs.bin', '0x10000', 'firmware.bin'])
+        if firmware_choice == '15':
+            espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x10000', 'firmware.bin'])
+        else:
+            espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00290000', 'spiffs.bin', '0x10000', 'firmware.bin'])
 else:
     espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x10000', 'firmware.bin'])
     # espmodule = esptool.main(['--chip', 'esp32', '--port', '/dev/cu.SLAB_USBtoUART', '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_size', 'detect', '2691072', 'spiffs.bin', '0x10000', 'firmware.bin'])
