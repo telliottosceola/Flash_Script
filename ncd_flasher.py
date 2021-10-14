@@ -190,6 +190,13 @@ firmware_choices = {
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure_Custom/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure_Custom/partitions.bin'
     }
+    '16':{
+        'name': '4-20mA Input Transmitter 4 channel',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/4-20_Input_Mirror_Transmitter_4_Channel/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/4-20_Input_Mirror_Transmitter_4_Channel/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/4-20_Input_Mirror_Transmitter_4_Channel/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/4-20_Input_Mirror_Transmitter_4_Channel/partitions.bin'
+    }
 }
 
 firmware_choices_dev = {
