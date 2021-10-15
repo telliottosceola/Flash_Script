@@ -197,6 +197,13 @@ firmware_choices = {
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/4-20_Input_Mirror_Transmitter_4_Channel/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/4-20_Input_Mirror_Transmitter_4_Channel/partitions.bin'
     }
+    '17':{
+        'name': 'Radon MN',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/radonmn_mqtt/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/radonmn_mqtt/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/radonmn_mqtt/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/radonmn_mqtt/partitions.bin'
+    }
 }
 
 firmware_choices_dev = {
