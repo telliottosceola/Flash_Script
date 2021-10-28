@@ -189,20 +189,27 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure_Custom/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure_Custom/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/WiFi_Azure_Custom/partitions.bin'
-    }
+    },
     '16':{
         'name': '4-20mA Input Transmitter 4 channel',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/4-20_Input_Mirror_Transmitter_4_Channel/firmware.bin',
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/4-20_Input_Mirror_Transmitter_4_Channel/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/4-20_Input_Mirror_Transmitter_4_Channel/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/4-20_Input_Mirror_Transmitter_4_Channel/partitions.bin'
-    }
+    },
     '17':{
         'name': 'Radon MN',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/radonmn_mqtt/firmware.bin',
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/radonmn_mqtt/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/radonmn_mqtt/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/radonmn_mqtt/partitions.bin'
+    },
+    '18':{
+        'name': '0-10VDC Input Transmitter 4 channel',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/0-10V_Input_Mirror_Transmitter_4_Channel/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/0-10V_Input_Mirror_Transmitter_4_Channel/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/0-10V_Input_Mirror_Transmitter_4_Channel/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/0-10V_Input_Mirror_Transmitter_4_Channel/partitions.bin'
     }
 }
 
