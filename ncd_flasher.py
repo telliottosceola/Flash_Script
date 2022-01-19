@@ -210,6 +210,12 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/0-10V_Input_Mirror_Transmitter_4_Channel/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/0-10V_Input_Mirror_Transmitter_4_Channel/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/0-10V_Input_Mirror_Transmitter_4_Channel/partitions.bin'
+    },
+    '19':{
+        'name': 'Goodtech 4 channel',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/firmware.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/partitions.bin'
     }
 }
 
@@ -271,6 +277,9 @@ for firmware in firmware_choices:
 print('')
 firmware_choice = input('Please enter the number of the desired firmware: ')
 
+if firmware_choice == '19':
+    spiffs = False;
+
 if(dev):
     firmware = firmware_choices_dev.get(firmware_choice)
 else:
@@ -280,9 +289,10 @@ print(firmware.get('firmware'))
 firmware_file = urllib.request.urlretrieve(str(firmware.get('firmware')), './firmware.bin')
 print(firmware_file)
 
-print(firmware.get('spiffs'))
-spiffs_file = urllib.request.urlretrieve(str(firmware.get('spiffs')), './spiffs.bin')
-print(spiffs_file)
+if spiffs:
+    print(firmware.get('spiffs'))
+    spiffs_file = urllib.request.urlretrieve(str(firmware.get('spiffs')), './spiffs.bin')
+    print(spiffs_file)
 
 print(firmware.get('bootloader'))
 bootloader_file = urllib.request.urlretrieve(str(firmware.get('bootloader')), './bootloader.bin')
