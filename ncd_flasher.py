@@ -217,6 +217,12 @@ firmware_choices = {
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/partitions.bin'
     }
+    '20':{
+        'name': 'SOTA',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/firmware.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/partitions.bin'
+    }
 }
 
 firmware_choices_dev = {
@@ -277,7 +283,7 @@ for firmware in firmware_choices:
 print('')
 firmware_choice = input('Please enter the number of the desired firmware: ')
 
-if firmware_choice == '19':
+if firmware_choice == '19' or firmware_choice == '20':
     spiffs = False;
 
 if(dev):
