@@ -225,9 +225,10 @@ firmware_choices = {
     },
     '21':{
         'name': 'Goodtech 2 relay 2 dac',
-        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/firmware.bin',
-        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/bootloader.bin',
-        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/partitions.bin'
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_2_Relay_2_Dac/firmware.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_2_Relay_2_Dac/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_2_Relay_2_Dac/partitions.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_2_Relay_2_Dac/spiffs.bin'
     }
 }
 
