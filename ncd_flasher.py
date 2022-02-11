@@ -222,6 +222,12 @@ firmware_choices = {
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/firmware.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/partitions.bin'
+    },
+    '21':{
+        'name': 'Goodtech 2 relay 2 dac',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/firmware.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/partitions.bin'
     }
 }
 
