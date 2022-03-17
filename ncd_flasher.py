@@ -230,6 +230,9 @@ firmware_choices = {
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_2_Relay_2_Dac/partitions.bin',
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_2_Relay_2_Dac/spiffs.bin'
     }
+    '22':{
+        'name': 'RFID'
+    }
 }
 
 firmware_choices_dev = {
@@ -292,6 +295,14 @@ firmware_choice = input('Please enter the number of the desired firmware: ')
 
 if firmware_choice == '19' or firmware_choice == '20':
     spiffs = False;
+
+if firmware_choice == '20':
+    __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+    firmware_file = open(os.path.join(__location__, 'firmware.bin'))
+    spiffs_file = open(os.path.join(__location__, 'spiffs.bin'))
+    bootloader_file = open(os.path.join(__location__, 'bootloader.bin'))
+    partitions_file = open(os.path.join(__location__, 'partitions.bin'))
+    espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00290000', 'spiffs.bin', '0x10000', 'firmware.bin'])
 
 if(dev):
     firmware = firmware_choices_dev.get(firmware_choice)
