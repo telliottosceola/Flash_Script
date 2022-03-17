@@ -229,7 +229,7 @@ firmware_choices = {
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_2_Relay_2_Dac/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_2_Relay_2_Dac/partitions.bin',
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_2_Relay_2_Dac/spiffs.bin'
-    }
+    },
     '22':{
         'name': 'RFID'
     }
