@@ -332,7 +332,7 @@ if firmware_choice != '22':
         print('')
         print('fingers crossed:')
 else:
-    spiffs = False;
+    # spiffs = False;
 
 # try:
 if spiffs:
