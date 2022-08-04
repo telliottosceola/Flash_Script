@@ -232,6 +232,13 @@ firmware_choices = {
     },
     '22':{
         'name': 'RFID'
+    },
+    '23': {
+        'name': 'MQTT V2 Temperature/Humidity Sensor',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/partitions.bin'
     }
 }
 
