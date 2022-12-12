@@ -239,6 +239,13 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/partitions.bin'
+    },
+    '24': {
+        'name': 'Email Generator SMTP2GO',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/partitions.bin'
     }
 }
 
