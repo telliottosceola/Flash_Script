@@ -240,6 +240,7 @@ firmware_choices = {
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/partitions.bin'
     },
+<<<<<<< HEAD
     '24':{
         'name': 'SOTA',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/firmware.bin',
@@ -247,6 +248,15 @@ firmware_choices = {
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/partitions.bin'
     },
 
+=======
+    '24': {
+        'name': 'Email Generator SMTP2GO',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/partitions.bin'
+    }
+>>>>>>> 9fb291ef12540f1ede00b3c4a8ca232456d15b1c
 }
 
 firmware_choices_dev = {
