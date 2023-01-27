@@ -218,7 +218,7 @@ firmware_choices = {
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/Goodtech_4_Relay/partitions.bin'
     },
     '20':{
-        'name': 'SOTA',
+        'name': 'SOTA Relay',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/firmware.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/partitions.bin'
@@ -241,17 +241,10 @@ firmware_choices = {
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/partitions.bin'
     },
     '24':{
-        'name': 'SOTA',
+        'name': 'SOTA PWM',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/firmware.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/partitions.bin'
-    },
-    '24': {
-        'name': 'Email Generator SMTP2GO',
-        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/firmware.bin',
-        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/spiffs.bin',
-        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/bootloader.bin',
-        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Email_Generator_smtp2go/partitions.bin'
     }
 }
 
