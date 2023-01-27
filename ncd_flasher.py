@@ -239,7 +239,14 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Temperature_Humidity/partitions.bin'
-    }
+    },
+    '24':{
+        'name': 'SOTA',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/firmware.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/partitions.bin'
+    },
+
 }
 
 firmware_choices_dev = {
