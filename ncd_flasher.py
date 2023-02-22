@@ -306,7 +306,7 @@ for firmware in firmware_choices:
 print('')
 firmware_choice = input('Please enter the number of the desired firmware: ')
 
-if firmware_choice == '19' or firmware_choice == '20':
+if firmware_choice == '19' or firmware_choice == '20' or firmware_choice == '24':
     spiffs = False;
 
 # if firmware_choice == '22':
