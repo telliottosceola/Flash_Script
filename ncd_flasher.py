@@ -245,6 +245,13 @@ firmware_choices = {
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/firmware.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/partitions.bin'
+    },
+    '25':{
+        'name': '8 Input Mirror Transmitter',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/partitions.bin'
     }
 }
 
