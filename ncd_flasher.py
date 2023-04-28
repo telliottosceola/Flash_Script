@@ -247,19 +247,11 @@ firmware_choices = {
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/partitions.bin'
     },
     '25':{
-<<<<<<< HEAD
         'name': 'Smart Repeater',
         'firmware': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater/firmware.bin',
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater/partitions.bin'
-=======
-        'name': '8 Input Mirror Transmitter',
-        'firmware': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/firmware.bin',
-        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/spiffs.bin',
-        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/bootloader.bin',
-        'partitions': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/partitions.bin'
->>>>>>> 453f74b7456608396189b425a66f1a2d3c733a17
     }
 }
 
@@ -321,7 +313,7 @@ for firmware in firmware_choices:
 print('')
 firmware_choice = input('Please enter the number of the desired firmware: ')
 
-if firmware_choice == '19' or firmware_choice == '20' or firmware_choice == '24':
+if firmware_choice == '19' or firmware_choice == '20':
     spiffs = False;
 
 # if firmware_choice == '22':
