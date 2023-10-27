@@ -247,11 +247,11 @@ firmware_choices = {
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/SOTA_PWM/partitions.bin'
     },
     '25':{
-        'name': 'Smart Repeater',
-        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater/firmware.bin',
-        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater/spiffs.bin',
-        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater/bootloader.bin',
-        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater/partitions.bin'
+        'name': '8 Input Mirror Transmitter',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/partitions.bin'
     }
 }
 
