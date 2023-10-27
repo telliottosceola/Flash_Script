@@ -252,6 +252,13 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/eight_input_seme_mirror/partitions.bin'
+    },
+    '26':{
+        'name': 'Firmware Flasher',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/firmware_flasher/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/firmware_flasher/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/firmware_flasher/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/firmware_flasher/partitions.bin'
     }
 }
 
