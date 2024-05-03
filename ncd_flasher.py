@@ -259,6 +259,13 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/firmware_flasher/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/firmware_flasher/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/firmware_flasher/partitions.bin'
+    },
+    '27':{
+        'name': 'Stmart Repeater 2',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater_2/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater_2/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater_2/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater_2/partitions.bin'
     }
 }
 
