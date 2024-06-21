@@ -266,6 +266,13 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater_2/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater_2/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/Smart_Repeater_2/partitions.bin'
+    },
+    '28': {
+        'name': 'MQTT V2 Current Monitor Sensor',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Current_Monitor/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Current_Monitor/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Current_Monitor/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Current_Monitor/partitions.bin'
     }
 }
 
