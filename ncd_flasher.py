@@ -273,6 +273,13 @@ firmware_choices = {
         'spiffs': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Current_Monitor/spiffs.bin',
         'bootloader': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Current_Monitor/bootloader.bin',
         'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_Current_Monitor/partitions.bin'
+    },
+    '29': {
+        'name': '4-20mA 4 Channel Output Receiver',
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/4-20_Output_Mirror_Transmitter_4_Channel/bootloader.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/4-20_Output_Mirror_Transmitter_4_Channel/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/4-20_Output_Mirror_Transmitter_4_Channel/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/4-20_Output_Mirror_Transmitter_4_Channel/partitions.bin'
     }
 }
 
