@@ -21,6 +21,8 @@ import urllib.request
 dev = False
 spiffs = True
 sota = False
+cli_port = None
+target_port = None
 
 
 def serial_ports():
@@ -61,28 +63,45 @@ port_array = {}
 # port_array.append('Cancel')
 if(len(sys.argv)>1):
     print('sys args present')
-    print(sys.argv[1])
-    if(sys.argv[1] == "dev" or sys.argv[1] == "-dev"):
-        print('running dev')
-        dev = True
-    if(sys.argv[1] == "ns" or sys.argv[1] == "-ns"):
-        print('not flashing spiffs')
-        spiffs = False
-    if(sys.argv[1] == "-sota" or sys.argv[1] == "sota"):
-        print('Sota Firmware');
-        sota = True
+    i = 1
+    while i < len(sys.argv):
+        arg = sys.argv[i]
+        if(arg == "dev" or arg == "-dev"):
+            print('running dev')
+            dev = True
+        elif(arg == "ns" or arg == "-ns"):
+            print('not flashing spiffs')
+            spiffs = False
+        elif(arg == "-sota" or arg == "sota"):
+            print('Sota Firmware')
+            sota = True
+        elif(arg == "-p" or arg == "--port"):
+            if i + 1 < len(sys.argv):
+                cli_port = sys.argv[i + 1]
+                print('Using serial port from args: ' + cli_port)
+                i += 1
+            else:
+                print('Warning: --port specified without a value')
+        elif(arg.startswith('/dev/') or arg.upper().startswith('COM')):
+            cli_port = arg
+            print('Using serial port from args: ' + cli_port)
+        i += 1
 
-print('Scanning for Serial Ports')
-print('Please wait for the scan to complete')
-print('Serial Port Options:')
-for serial_port in serial_ports():
-    sp_key = len(port_array)+1
-    port_array.update({str(sp_key): serial_port})
+if cli_port:
+    target_port = cli_port
+else:
+    print('Scanning for Serial Ports')
+    print('Please wait for the scan to complete')
+    print('Serial Port Options:')
+    for serial_port in serial_ports():
+        sp_key = len(port_array)+1
+        port_array.update({str(sp_key): serial_port})
 
-for serial_port in port_array:
-    print('[' + serial_port + ']: ' + port_array.get(serial_port))
-print('')
-target_port_key = input('Please enter the number of the desired Serial Port above: ')
+    for serial_port in port_array:
+        print('[' + serial_port + ']: ' + port_array.get(serial_port))
+    print('')
+    target_port_key = input('Please enter the number of the desired Serial Port above: ')
+    target_port = port_array.get(target_port_key)
 
 firmware_choices = {
     '1': {
@@ -339,7 +358,7 @@ if sota:
     firmware_file = urllib.request.urlretrieve('https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/firmware.bin', './firmware.bin')
     partitions_file = urllib.request.urlretrieve('https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/partitions.bin', './partitions.bin')
     bootloader_file = urllib.request.urlretrieve('https://ncd-esp32.s3.amazonaws.com/SOTA_Relay/bootloader.bin', './bootloader.bin')
-    espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x10000', 'firmware.bin'])
+    espmodule = esptool.main(['--chip', 'esp32', '--port', target_port, '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x10000', 'firmware.bin'])
     sys.exit()
 
 print('Firmware Choices:')
@@ -382,7 +401,7 @@ if firmware_choice != '22':
         partitions_file = urllib.request.urlretrieve(str(firmware.get('partitions')), './partitions.bin')
         print(partitions_file)
 
-        print(port_array.get(target_port_key))
+        print(target_port)
 
         print('')
         print('fingers crossed:')
@@ -390,12 +409,12 @@ if firmware_choice != '22':
 # try:
 if spiffs:
     if firmware_choice == '5' or firmware_choice == '14':
-        espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00383000', 'spiffs.bin', '0x10000', 'firmware.bin'])
+        espmodule = esptool.main(['--chip', 'esp32', '--port', target_port, '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00383000', 'spiffs.bin', '0x10000', 'firmware.bin'])
     else:
-        espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00290000', 'spiffs.bin', '0x10000', 'firmware.bin'])
+        espmodule = esptool.main(['--chip', 'esp32', '--port', target_port, '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00290000', 'spiffs.bin', '0x10000', 'firmware.bin'])
 else:
     print('no spiffs')
-    espmodule = esptool.main(['--chip', 'esp32', '--port', port_array.get(target_port_key), '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x10000', 'firmware.bin'])
+    espmodule = esptool.main(['--chip', 'esp32', '--port', target_port, '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x10000', 'firmware.bin'])
     # espmodule = esptool.main(['--chip', 'esp32', '--port', '/dev/cu.SLAB_USBtoUART', '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_size', 'detect', '2691072', 'spiffs.bin', '0x10000', 'firmware.bin'])
 # except:
     # print('fail cu')
