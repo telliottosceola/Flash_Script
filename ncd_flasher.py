@@ -283,10 +283,10 @@ firmware_choices = {
     },
     '30': {
         'name': 'MQTT V2 Push Notification',
-        'firmware': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_IO/firmware.bin',
-        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_IO/spiffs.bin',
-        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_IO/bootloader.bin',
-        'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Sensor_IO/partitions.bin'
+        'firmware': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Push_Notification/firmware.bin',
+        'spiffs': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Push_Notification/spiffs.bin',
+        'bootloader': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Push_Notification/bootloader.bin',
+        'partitions': 'https://ncd-esp32.s3.amazonaws.com/ESP32_V2_Push_Notification/partitions.bin'
     }
 }
 
