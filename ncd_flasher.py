@@ -6,6 +6,7 @@ import os
 import sys
 import threading
 import glob
+import struct
 
 import esptool
 
@@ -23,6 +24,47 @@ spiffs = True
 sota = False
 cli_port = None
 target_port = None
+
+
+# Default filesystem offset, used only when partitions.bin cannot be read.
+DEFAULT_SPIFFS_OFFSET = 0x00290000
+
+
+def spiffs_offset_from_partitions(path='./partitions.bin', fallback=DEFAULT_SPIFFS_OFFSET):
+    """Read the filesystem offset out of an ESP32 partition table image.
+
+    The offset differs per product (0x290000 on the stock layout, 0x383000 on the
+    custom one), so it must come from the partition table being flashed rather than
+    from a hardcoded list keyed on the menu number. Writing spiffs.bin to the wrong
+    address silently leaves the existing filesystem in place: the device boots the
+    new firmware and reports the new version while still serving the old web UI.
+
+    Table entries are 32 bytes -- magic(2) type(1) subtype(1) offset(4) size(4)
+    label(16) flags(4). Data partitions are type 1; SPIFFS is subtype 0x82 and
+    LittleFS 0x83. Returns `fallback` if the table is missing or unparsable so a
+    failure here is never worse than the previous behaviour.
+    """
+    try:
+        with open(path, 'rb') as table_file:
+            table = table_file.read()
+    except (IOError, OSError):
+        print('Could not read %s, falling back to 0x%06X' % (path, fallback))
+        return fallback
+
+    for i in range(0, len(table) - 31, 32):
+        entry = table[i:i + 32]
+        if entry[0:2] != b'\xAA\x50':
+            if entry[0:2] == b'\xEB\xEB':
+                break  # MD5 checksum entry marks the end of the table
+            continue
+        if entry[2] == 1 and entry[3] in (0x82, 0x83):
+            offset = struct.unpack('<I', entry[4:8])[0]
+            label = entry[12:28].rstrip(b'\x00').decode('utf-8', 'replace')
+            print("Filesystem partition '%s' found at 0x%06X" % (label, offset))
+            return offset
+
+    print('No filesystem partition in %s, falling back to 0x%06X' % (path, fallback))
+    return fallback
 
 
 def serial_ports():
@@ -408,10 +450,13 @@ if firmware_choice != '22':
 
 # try:
 if spiffs:
-    if firmware_choice == '5' or firmware_choice == '14':
-        espmodule = esptool.main(['--chip', 'esp32', '--port', target_port, '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00383000', 'spiffs.bin', '0x10000', 'firmware.bin'])
-    else:
-        espmodule = esptool.main(['--chip', 'esp32', '--port', target_port, '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', '0x00290000', 'spiffs.bin', '0x10000', 'firmware.bin'])
+    # The filesystem offset comes from the partition table actually being flashed.
+    # It used to be hardcoded per menu number, which sent spiffs.bin to 0x290000 on
+    # every product except choices 5 and 14 -- including any board using the custom
+    # 0x383000 layout, where the write landed in unused app space and the old
+    # filesystem survived untouched.
+    spiffs_offset = '0x%06X' % spiffs_offset_from_partitions('./partitions.bin')
+    espmodule = esptool.main(['--chip', 'esp32', '--port', target_port, '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x8000', 'partitions.bin', spiffs_offset, 'spiffs.bin', '0x10000', 'firmware.bin'])
 else:
     print('no spiffs')
     espmodule = esptool.main(['--chip', 'esp32', '--port', target_port, '--baud', '921600', '--before', 'default_reset', '--after', 'hard_reset', 'write_flash', '-z', '--flash_mode', 'dio', '--flash_freq', '40m', '--flash_size', 'detect', '0x1000', 'bootloader.bin', '0x10000', 'firmware.bin'])
